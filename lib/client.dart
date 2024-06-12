@@ -1,7 +1,6 @@
 import 'package:cn_bingo/main.dart';
 import 'package:flutter/material.dart';
 import 'tcp_socket.dart';
-import 'dart:math';
 
 class ClientPage extends StatefulWidget {
   @override
@@ -11,8 +10,6 @@ class ClientPage extends StatefulWidget {
 class _ClientPageState extends State<ClientPage> {
   TextEditingController ipAddressController = TextEditingController(text: '10.0.2.2');
   TextEditingController portController = TextEditingController(text: '6000');
-
-  //final TcpClient tcpClient = TcpClient();
 
   @override
   Widget build(BuildContext context) {
@@ -387,16 +384,6 @@ class _PlayerPageState extends State<PlayerPage> {
     );
   }
 
-  Color _getBoxColor(int index) {
-    if (gridData[index] == -1) {
-      return Colors.grey;
-    } else if (gridData[index] == 0) {
-      return Colors.orange;
-    } else {
-      return Colors.red;
-    }
-  }
-
   void _checkBingo() {
     connectedCount = 0;
     // Check rows
@@ -454,15 +441,6 @@ class _PlayerPageState extends State<PlayerPage> {
   void _generateRandomNumbers() {
     numbers.shuffle();
     gridData = List.from(numbers);
-  }
-
-  bool _isGridValid() {
-    for (int i = 0; i < 25; i++) {
-      if (gridData[i] < 1 || gridData[i] > 25) {
-        return false;
-      }
-    }
-    return true;
   }
 
   void _reorderNumbers(int fromIndex, int toIndex) {
